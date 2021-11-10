@@ -2,43 +2,58 @@
     "kondimen": [
         {
             "id": 1,
-            "name": "merica"
+            "name": "merica",
+            "massa": 5
         },
         {
             "id": 2,
-            "name": "garam"
+            "name": "garam",
+            "massa": 5
         },
         {
             "id": 3,
-            "name": "bawang putih (cincang)"
+            "name": "bawang putih (cincang)",
+            "massa": 5
         },
         {
             "id": 4,
-            "name": "bawang merah (cincang)"
+            "name": "bawang merah (cincang)",
+            "massa": 5
         },
         {
             "id": 5,
-            "name": "bubuk cabai"
+            "name": "bubuk cabai",
+            "massa": 5
         },
         {
             "id": 6,
-            "name": "saus sambal"
+            "name": "saus sambal",
+            "massa": 15
         },
         {
             "id": 7,
-            "name": "saus tomat"
+            "name": "saus tomat",
+            "massa": 15
         },
         {
             "id": 8,
-            "name": "kecap asin"
+            "name": "kecap asin",
+            "massa": 15
         },
         {
             "id": 9,
-            "name": "ketumbar"
+            "name": "ketumbar",
+            "massa": 5
         },
         {
             "id": 10,
-            "name": "kunyit"
+            "name": "kunyit",
+            "massa": 15
+        },
+        {
+            "id": 11,
+            "name": "gula",
+            "massa": 10
         }
     ]
 }

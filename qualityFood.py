@@ -51,7 +51,28 @@ async def read_kondimen(food_id : int):
 			detail = f'data tidak ditemukan'
 		)
 
+@app.get("/ingredients_control")
+async def ingredients_control(food_id : int, jumlah_buat : int):
+    if jumlah_buat < 10:
+        return "Minimal pembuatan perbatch harus sebanyak 10 porsi"
+    elif food_id == 1:
+        return {
+            "jumlah " + data_bumbu["kondimen"][1]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][1]["massa"]*jumlah_buat) + " gram" ,
+            "jumlah " + data_bumbu["kondimen"][2]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][2]["massa"]*jumlah_buat) + " gram" ,
+            "jumlah " + data_bumbu["kondimen"][3]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][3]["massa"]*jumlah_buat) + " gram" ,
+            "jumlah " + data_bumbu["kondimen"][4]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][4]["massa"]*jumlah_buat) + " gram" ,
+            "jumlah " + data_bumbu["kondimen"][5]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][5]["massa"]*jumlah_buat) + " gram" ,
+            "jumlah " + data_bumbu["kondimen"][6]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][6]["massa"]*jumlah_buat) + " gram"  
+        }
 
+@app.get("/food_control")
+async def food_control(suhu : int, kelembaban : int):
+    if suhu < 35:
+        return "harus dipanaskan!"
+    elif suhu > 50:
+        return "suhu terlalu tinggi, perlu didiamkan sebentar!"
+    else: 
+        return "makanan sudah siap disajikan!"
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8080)
