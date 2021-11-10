@@ -1,0 +1,44 @@
+{
+    "kondimen": [
+        {
+            "id": 1,
+            "name": "merica"
+        },
+        {
+            "id": 2,
+            "name": "garam"
+        },
+        {
+            "id": 3,
+            "name": "bawang putih (cincang)"
+        },
+        {
+            "id": 4,
+            "name": "bawang merah (cincang)"
+        },
+        {
+            "id": 5,
+            "name": "bubuk cabai"
+        },
+        {
+            "id": 6,
+            "name": "saus sambal"
+        },
+        {
+            "id": 7,
+            "name": "saus tomat"
+        },
+        {
+            "id": 8,
+            "name": "kecap asin"
+        },
+        {
+            "id": 9,
+            "name": "ketumbar"
+        },
+        {
+            "id": 10,
+            "name": "kunyit"
+        }
+    ]
+}

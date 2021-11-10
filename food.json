@@ -1,0 +1,20 @@
+{
+    "makanan": [
+        {
+            "id": 1,
+            "name": "ayam crispy"
+        },
+        {
+            "id": 2,
+            "name": "spicy chicken"
+        },
+        {
+            "id": 3,
+            "name": "spicy wings"
+        },
+        {
+            "id": 4,
+            "name": "sweet wings"
+        }
+    ]
+}
