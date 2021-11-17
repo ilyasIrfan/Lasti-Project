@@ -36,7 +36,7 @@ async def read_kondimen(kondimen_id : int):
 		)
 
 @app.get("/makanan/{food_id}")
-async def read_kondimen(food_id : int):
+async def read_makanan(food_id : int):
 	for food_item in data_menu['makanan']:
 		if food_item['id'] == food_id:
 			return food_item
