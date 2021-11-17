@@ -2,19 +2,27 @@
     "makanan": [
         {
             "id": 1,
-            "name": "ayam crispy"
+            "name": "ayam crispy",
+            "suhuMax" : 50,
+            "suhuMin" : 35,
+            "humidMin" : 60,
+            "humidMax" : 75
         },
         {
             "id": 2,
-            "name": "spicy chicken"
+            "name": "spicy chicken",
+            "suhuMax" : 40,
+            "suhuMin" : 30,
+            "humidMin" : 65,
+            "humidMax" : 75
         },
         {
             "id": 3,
-            "name": "spicy wings"
-        },
-        {
-            "id": 4,
-            "name": "sweet wings"
+            "name": "ayam ungkep",
+            "suhuMax" : 55,
+            "suhuMin" : 40,
+            "humidMin" : 60,
+            "humidMax" : 80
         }
     ]
 }
