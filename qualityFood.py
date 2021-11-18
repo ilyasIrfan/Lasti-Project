@@ -75,7 +75,7 @@ async def food_control(food_id: int, suhu: int, kelembaban: int):
     elif not(check_temperature(suhu, suhu_min, suhu_maks)) and check_humidity(kelembaban, kelembaban_min, kelembaban_maks):
         return recommend_temperature(suhu, suhu_min, suhu_maks)
     else:
-        return "suhu dan kelembaban perlu diatur"
+        return recommend_all(suhu, suhu_min, suhu_maks, kelembaban, kelembaban_min, kelembaban_maks)
 
 
 def check_temperature(suhu_makanan: int, suhu_min: int, suhu_maks: int):
@@ -94,16 +94,20 @@ def check_humidity(kelembaban_makanan: int, kelembaban_min: int, kelembaban_maks
 
 def recommend_temperature(suhu_makanan: int, suhu_min: int, suhu_maks: int):
     if(suhu_makanan > suhu_maks):
-        return "suhu terlalu tinggi"
+        return "suhu terlalu tinggi, kurangi suhu setidaknya " + str(suhu_makanan-suhu_maks) + "°C"
     elif(suhu_makanan < suhu_min):
-        return "suhu terlalu rendah"
+        return "suhu terlalu rendah, tambahi suhu setidaknya " + str(suhu_min-suhu_makanan) + "°C"
 
 
 def recommend_humidity(kelembaban_makanan: int, kelembaban_min: int, kelembaban_maks: int):
     if(kelembaban_makanan > kelembaban_maks):
-        return "kelembaban terlalu tinggi"
+        return "kelembaban terlalu tinggi, kurangi kelembaban setidaknya " + str(kelembaban_makanan-kelembaban_maks) + "%RH"
     elif(kelembaban_makanan < kelembaban_min):
-        return "kelembaban terlalu rendah"
+        return "kelembaban terlalu rendah, tambahi kelembaban setidaknya " + str(kelembaban_min-kelembaban_makanan) + "%RH"
+
+
+def recommend_all(suhu_makanan: int, suhu_min: int, suhu_maks: int, kelembaban_makanan: int, kelembaban_min: int, kelembaban_maks: int):
+    return recommend_temperature(suhu_makanan, suhu_min, suhu_maks) + ". Kemudian, " + recommend_humidity(kelembaban_makanan, kelembaban_min, kelembaban_maks)
 
 
 def hitungSemuaMassaBumbu(id, jumlah):
