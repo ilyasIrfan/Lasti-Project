@@ -42,25 +42,25 @@ async def read_all_food():
     return data_menu
 
 
-@app.get("/bumbu/{bumbu_id}")
-async def read_ingredient(food_id: int, kondimen_id: int):
+@app.get("/bumbu/{food_id}/{bumbu_id}")
+async def read_ingredient(food_id: int, bumbu_id: int):
     if food_id == 1:
         for kondimen_item in data_bumbu_id1['bumbu']:
-            if kondimen_item['id'] == kondimen_id:
+            if kondimen_item['id'] == bumbu_id:
                 return kondimen_item
         raise HTTPException(
             status_code=404, detail=f'data tidak ditemukan'
         )
     elif food_id == 2:
-        for kondimen_item in data_bumbu_id1['bumbu']:
-            if kondimen_item['id'] == kondimen_id:
+        for kondimen_item in data_bumbu_id2['bumbu']:
+            if kondimen_item['id'] == bumbu_id:
                 return kondimen_item
         raise HTTPException(
-            status_code=404,detail=f'data tidak ditemukan'
+            status_code=404, detail=f'data tidak ditemukan'
         )
     elif food_id == 3:
-        for kondimen_item in data_bumbu_id1['bumbu']:
-            if kondimen_item['id'] == kondimen_id:
+        for kondimen_item in data_bumbu_id3['bumbu']:
+            if kondimen_item['id'] == bumbu_id:
                 return kondimen_item
         raise HTTPException(
             status_code=404, detail=f'data tidak ditemukan'
@@ -80,9 +80,9 @@ async def read_makanan(food_id: int):
     )
 
 
-@app.get("/ingredients_control")
+@app.get("/ingredients_control/{food_id}/{bumbu_id}")
 async def ingredients_control(food_id: int, bumbu_id: int, massa: int):
-        return hitungSemuaMassaBumbu(food_id,  bumbu_id, massa)
+    return hitungSemuaMassaBumbu(food_id,  bumbu_id, massa)
 
 
 @app.get("/food_control/{food_id}")
@@ -158,4 +158,3 @@ def hitungSemuaMassaBumbu(food_id, bumbu_id, massa):
             return "massa kurang, tambahkan " + str(data_bumbu_id3["bumbu"][bumbu_id-1]["massa"] - massa) + " gram!"
         else:
             return "massa sudah sesuai, lanjut ke proses selanjutnya!"
-
