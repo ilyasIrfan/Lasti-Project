@@ -81,10 +81,7 @@ async def read_makanan(food_id: int):
 
 
 @app.get("/ingredients_control")
-async def ingredients_control(food_id: int, jumlah_buat: int, bumbu_id: int, massa: int):
-    if jumlah_buat < 5:
-        return "Minimal pembuatan perbatch harus sebanyak 5 porsi"
-    else:
+async def ingredients_control(food_id: int, bumbu_id: int, massa: int):
         return hitungSemuaMassaBumbu(food_id,  bumbu_id, massa)
 
 
