@@ -25,7 +25,7 @@ def root():
     return ("Welcome to YamYam")
 
 
-@app.get("/bumbu")
+@app.get("/bumbu/{food_id}")
 async def read_all_ingredients_food(food_id: int):
     if food_id == 1:
         return data_bumbu_id1
