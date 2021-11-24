@@ -5,8 +5,14 @@ from fastapi import FastAPI, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-with open("ingredients.json", "r") as read_file:
-    data_bumbu = json.load(read_file)
+with open("ingredients_id1.json", "r") as read_file:
+    data_bumbu_id1 = json.load(read_file)
+
+with open("ingredients_id2.json", "r") as read_file:
+    data_bumbu_id2 = json.load(read_file)
+
+with open("ingredients_id3.json", "r") as read_file:
+    data_bumbu_id3 = json.load(read_file)
 
 with open("food.json", "r") as read_file:
     data_menu = json.load(read_file)
@@ -19,9 +25,16 @@ def root():
     return ("Welcome to YamYam")
 
 
-@app.get("/kondimen")
-async def read_all_kondimens():
-    return data_bumbu
+@app.get("/bumbu")
+async def read_all_ingredients_food(food_id: int):
+    if food_id == 1:
+        return data_bumbu_id1
+    elif food_id == 2:
+        return data_bumbu_id2
+    elif food_id == 3:
+        return data_bumbu_id3
+    else:
+        return "Tidak ada id berupa " + str(food_id)
 
 
 @app.get("/makanan")
@@ -29,15 +42,31 @@ async def read_all_food():
     return data_menu
 
 
-@app.get("/kondimen/{kondimen_id}")
-async def read_kondimen(kondimen_id: int):
-    for kondimen_item in data_bumbu['kondimen']:
-        if kondimen_item['id'] == kondimen_id:
-            return kondimen_item
-    raise HTTPException(
-        status_code=404,
-        detail=f'data tidak ditemukan'
-    )
+@app.get("/bumbu/{bumbu_id}")
+async def read_ingredient(food_id: int, kondimen_id: int):
+    if food_id == 1:
+        for kondimen_item in data_bumbu_id1['bumbu']:
+            if kondimen_item['id'] == kondimen_id:
+                return kondimen_item
+        raise HTTPException(
+            status_code=404, detail=f'data tidak ditemukan'
+        )
+    elif food_id == 2:
+        for kondimen_item in data_bumbu_id1['bumbu']:
+            if kondimen_item['id'] == kondimen_id:
+                return kondimen_item
+        raise HTTPException(
+            status_code=404,detail=f'data tidak ditemukan'
+        )
+    elif food_id == 3:
+        for kondimen_item in data_bumbu_id1['bumbu']:
+            if kondimen_item['id'] == kondimen_id:
+                return kondimen_item
+        raise HTTPException(
+            status_code=404, detail=f'data tidak ditemukan'
+        )
+    else:
+        return "Tidak ada id berupa " + str(food_id)
 
 
 @app.get("/makanan/{food_id}")
@@ -52,11 +81,11 @@ async def read_makanan(food_id: int):
 
 
 @app.get("/ingredients_control")
-async def ingredients_control(food_id: int, jumlah_buat: int):
-    if jumlah_buat < 10:
-        return "Minimal pembuatan perbatch harus sebanyak 10 porsi"
+async def ingredients_control(food_id: int, jumlah_buat: int, bumbu_id: int, massa: int):
+    if jumlah_buat < 5:
+        return "Minimal pembuatan perbatch harus sebanyak 5 porsi"
     else:
-        return hitungSemuaMassaBumbu(food_id, jumlah_buat)
+        return hitungSemuaMassaBumbu(food_id,  bumbu_id, massa)
 
 
 @app.get("/food_control/{food_id}")
@@ -110,31 +139,26 @@ def recommend_all(suhu_makanan: int, suhu_min: int, suhu_maks: int, kelembaban_m
     return recommend_temperature(suhu_makanan, suhu_min, suhu_maks) + ". Kemudian, " + recommend_humidity(kelembaban_makanan, kelembaban_min, kelembaban_maks)
 
 
-def hitungSemuaMassaBumbu(id, jumlah):
-    if id == 1:
-        return {
-            "jumlah " + data_bumbu["kondimen"][0]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][0]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][1]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][1]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][2]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][2]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][3]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][3]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][8]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][8]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][9]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][9]["massa"]*jumlah) + " gram"
-        }
-    else:
-        return {
-            "jumlah " + data_bumbu["kondimen"][0]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][0]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][1]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][1]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][2]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][2]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][3]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][3]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][4]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][4]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][5]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][5]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][6]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][6]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][7]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][7]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][8]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][8]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][9]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][9]["massa"]*jumlah) + " gram",
-            "jumlah " + data_bumbu["kondimen"][10]["name"] + " yang harus disiapkan": str(data_bumbu["kondimen"][10]["massa"]*jumlah) + " gram"
-        }
+def hitungSemuaMassaBumbu(food_id, bumbu_id, massa):
+    if food_id == 1:
+        if massa > data_bumbu_id1["bumbu"][bumbu_id-1]["massa"]:
+            return "massa berlebih, kurangi " + str(massa - data_bumbu_id1["bumbu"][bumbu_id-1]["massa"]) + " gram!"
+        elif massa < data_bumbu_id1["bumbu"][bumbu_id-1]["massa"]:
+            return "massa kurang, tambahkan " + str(data_bumbu_id1["bumbu"][bumbu_id-1]["massa"] - massa) + " gram!"
+        else:
+            return "massa sudah sesuai, lanjut ke proses selanjutnya!"
+    elif food_id == 2:
+        if massa > data_bumbu_id2["bumbu"][bumbu_id-1]["massa"]:
+            return "massa berlebih, kurangi " + str(massa - data_bumbu_id2["bumbu"][bumbu_id-1]["massa"] - massa) + " gram!"
+        elif massa < data_bumbu_id2["bumbu"][bumbu_id-1]["massa"]:
+            return "massa kurang, tambahkan " + str(data_bumbu_id2["bumbu"][bumbu_id-1]["massa"] - massa) + " gram!"
+        else:
+            return "massa sudah sesuai, lanjut ke proses selanjutnya!"
+    elif food_id == 3:
+        if massa > data_bumbu_id3["bumbu"][bumbu_id-1]["massa"]:
+            return "massa berlebih, kurangi " + str(massa - data_bumbu_id3["bumbu"][bumbu_id-1]["massa"] - massa) + " gram!"
+        elif massa < data_bumbu_id3["bumbu"][bumbu_id-1]["massa"]:
+            return "massa kurang, tambahkan " + str(data_bumbu_id3["bumbu"][bumbu_id-1]["massa"] - massa) + " gram!"
+        else:
+            return "massa sudah sesuai, lanjut ke proses selanjutnya!"
 
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8080)

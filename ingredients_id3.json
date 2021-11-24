@@ -1,29 +1,29 @@
 {
-    "kondimen": [
+    "bumbu": [
         {
             "id": 1,
             "name": "merica",
-            "massa": 5
+            "massa": 8
         },
         {
             "id": 2,
             "name": "garam",
-            "massa": 5
+            "massa": 8
         },
         {
             "id": 3,
             "name": "bawang putih (cincang)",
-            "massa": 5
+            "massa": 8
         },
         {
             "id": 4,
             "name": "bawang merah (cincang)",
-            "massa": 5
+            "massa": 8
         },
         {
             "id": 5,
             "name": "bubuk cabai",
-            "massa": 5
+            "massa": 10
         },
         {
             "id": 6,
@@ -43,7 +43,7 @@
         {
             "id": 9,
             "name": "ketumbar",
-            "massa": 5
+            "massa": 10
         },
         {
             "id": 10,
@@ -54,6 +54,16 @@
             "id": 11,
             "name": "gula",
             "massa": 10
+        },
+        {
+            "id": 12,
+            "name": "tepung terigu",
+            "massa": 500
+        },
+        {
+            "id": 13,
+            "name": "telur aduk",
+            "massa": 150
         }
     ]
 }
