@@ -132,8 +132,8 @@ def recommend_humidity(kelembaban_makanan: int, kelembaban_min: int, kelembaban_
         return "kelembaban terlalu rendah, tambahi kelembaban setidaknya " + str(kelembaban_min-kelembaban_makanan) + "%RH"
 
 
-def recommend_all(suhu_makanan: int, suhu_min: int, suhu_maks: int, kelembaban_makanan: int, kelembaban_min: int, kelembaban_maks: int):
-    return recommend_temperature(suhu_makanan, suhu_min, suhu_maks) + ". Kemudian, " + recommend_humidity(kelembaban_makanan, kelembaban_min, kelembaban_maks)
+def recommend_all(suhu: int, suhu_min: int, suhu_maks: int, kelembaban: int, kelembaban_min: int, kelembaban_maks: int):
+    return recommend_temperature(suhu, suhu_min, suhu_maks)+". Kemudian, "+recommend_humidity(kelembaban, kelembaban_min, kelembaban_maks)
 
 
 def hitungSemuaMassaBumbu(food_id, bumbu_id, massa):
