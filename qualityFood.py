@@ -17,7 +17,7 @@ with open("ingredients_id3.json", "r") as read_file:
 with open("food.json", "r") as read_file:
     data_menu = json.load(read_file)
 
-app = FastAPI()
+app = FastAPI(title="Yamyam || Quality Food Monitoring System")
 
 
 @app.get("/")
